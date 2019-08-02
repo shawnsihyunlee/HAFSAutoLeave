@@ -15,7 +15,10 @@ def homepage(request):
 		messages.info(request, "Please login first.")
 		return redirect("main:login")
 
+
 	info = request.user.goinginfo
+	is_active = info.do_auto_signup
+
 	init_data = {'student_id' : info.student_id, 'student_pass' : info.student_pass, 
 				'out_day' : info.out_day, 'out_hour' : info.out_hour, 'out_minute' : info.out_minute,
 				'return_day' : info.return_day, 'return_hour' : info.return_hour, 'return_minute' : info.return_minute}
@@ -23,23 +26,46 @@ def homepage(request):
 	if request.method == "POST":
 		# messages.success(request, "Clicked.")
 		form = GoingInfoForm(request.POST, instance = info)
-		if form.is_valid():
-			info.do_auto_signup = not info.do_auto_signup
-			saved_info = form.save()
-			saved_info.refresh_from_db()
-			is_active = saved_info.do_auto_signup
-			if is_active == True:
+		if not is_active:
+			if form.is_valid():
+				info.do_auto_signup = not info.do_auto_signup
+				saved_info = form.save()
+				# saved_info.refresh_from_db()
+				# is_active = saved_info.do_auto_signup
 				messages.success(request, "Activated auto-signup!")
-			if is_active == False:
-				messages.info(request, "Deactivated auto-signup!")
-			# return redirect("main:homepage")
-			return render(request = request,
-				template_name = "main/home.html",
-				context = {"form" : form, "is_active" : is_active})
+
+		else:
+			info.do_auto_signup = not info.do_auto_signup
+			info.save()
+			messages.info(request, "Deactivated auto-signup!")
+				
+		return redirect("main:homepage")
+		# return render(request = request,
+		# 	template_name = "main/home.html",
+		# 	context = {"form" : form, "is_active" : is_active})
 
 
 	form = GoingInfoForm(instance = info, initial = init_data)
-	is_active = info.do_auto_signup
+	
+	if is_active:
+		form.fields['student_id'].widget.attrs['disabled'] = True
+		form.fields['student_pass'].widget.attrs['disabled'] = True
+		form.fields['out_day'].widget.attrs['disabled'] = True
+		form.fields['out_hour'].widget.attrs['disabled'] = True
+		form.fields['out_minute'].widget.attrs['disabled'] = True
+		form.fields['return_day'].widget.attrs['disabled'] = True
+		form.fields['return_hour'].widget.attrs['disabled'] = True
+		form.fields['return_minute'].widget.attrs['disabled'] = True
+
+	else:
+		form.fields['student_id'].widget.attrs['disabled'] = False
+		form.fields['student_pass'].widget.attrs['disabled'] = False
+		form.fields['out_day'].widget.attrs['disabled'] = False
+		form.fields['out_hour'].widget.attrs['disabled'] = False
+		form.fields['out_minute'].widget.attrs['disabled'] = False
+		form.fields['return_day'].widget.attrs['disabled'] = False
+		form.fields['return_hour'].widget.attrs['disabled'] = False
+		form.fields['return_minute'].widget.attrs['disabled'] = False
 
 	return render(request = request,
 				  template_name = "main/home.html",

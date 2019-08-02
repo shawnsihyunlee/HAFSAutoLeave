@@ -27,16 +27,22 @@ class NewUserForm(UserCreationForm):
 
 class GoingInfoForm(forms.ModelForm):
 
+    day_choices = [("friday", "Friday"), ("saturday", "Saturday"), ("sunday", "Sunday")]
+    minute_choices = [(x, x) for x in range(0, 70, 10)]
+    hour_choices = [(x, x) for x in range(0, 24)]
+
+
+    out_day= forms.CharField(label='Out day', widget=forms.Select(choices=day_choices, attrs = {"class" : "browser-default"}))
+    return_day= forms.CharField(widget=forms.Select(choices=day_choices, attrs = {"class" : "browser-default"}))
+    out_hour= forms.IntegerField(widget=forms.Select(choices=hour_choices, attrs = {"class" : "browser-default"}))
+    out_minute= forms.IntegerField(widget=forms.Select(choices=minute_choices, attrs = {"class" : "browser-default"}))
+    return_hour= forms.IntegerField(widget=forms.Select(choices=hour_choices, attrs = {"class" : "browser-default"}))
+    return_minute= forms.IntegerField(widget=forms.Select(choices=minute_choices, attrs = {"class" : "browser-default"}))
     class Meta:
         model = GoingInfo
         fields = ['student_id', 'student_pass', 
                   'out_day', 'out_hour', 'out_minute',
                   'return_day', 'return_hour', 'return_minute']
-        # widgets = {
-        #     'out_day' : forms.Select(choices=[("Friday", "Friday"), ("Saturday", "Saturday"), ("Sunday", "Sunday")]),
-        #     'out_hour' : forms.Select(choices=[(x, x) for x in range(19, 24)]),
-        #     'out_minute' : forms.Select(choices=[(x, x) for x in range(0, 60, 10)]),
-        # }
 
 
 

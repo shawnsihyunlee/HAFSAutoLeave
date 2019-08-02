@@ -4,12 +4,14 @@
 
 <div class="container">
 
-	<div class="section">
-		<h3>
-			going.hafs.hs.kr 로그인 정보
+	<br>
+
+	<div class = "card-panel white">
+		<h3 class = "center-align">
+			정기 외출
 		</h3>
-	</div>
-	<div class = "divider"></div>
+	
+
 	<form method="POST">
 
 		{% csrf_token %}
@@ -40,6 +42,7 @@
 				<div class="fieldWrapper">
 					{{ form.out_day.errors }}
 					<label for="{{ form.out_day.id_for_label }}">Out Day:</label>
+					
 					{{ form.out_day }}
 				</div>
 			</div>
@@ -86,15 +89,22 @@
 					{{ form.return_minute }}
 				</div>
 			</div>
+		</div>		
+
+		<div class = "row">
+			{% if not is_active %}
+				<button style="background-color:#00b043; color:black" class="waves-effect waves-light btn-large center-align" type="submit"><i class="material-icons left">play_arrow</i>Start</button>
+			{% else %}
+				<p>
+				수정을 위해서는 자동등록을 멈추고 수정해주시기 바랍니다.
+			</p>
+				<button style="background-color:#ff9999; color:black" class="waves-effect waves-light btn-large center-align" type="submit"><i class="material-icons left">stop</i>Stop</button>
+			{% endif %}
 		</div>
 
-		{% if not is_active %}
-			<button style="background-color:#00b043; color:black" class="waves-effect waves-light btn-large center-align" type="submit"><i class="material-icons left">play_arrow</i>Start</button>
-		{% else %}
-			<button style="background-color:#ff9999; color:black" class="waves-effect waves-light btn-large center-align" type="submit"><i class="material-icons left">stop</i>Stop</button>
-		{% endif %}
-
 	</form>
+
+</div>
 
 	
 	<br><br><br>
