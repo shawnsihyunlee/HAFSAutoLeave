@@ -1,0 +1,8 @@
+<li><a href="/">Auto-Leave Settings</a></li>
+				{% if user.is_authenticated %}
+					<li><a> Welcome, {{user.username}} </a> </li>
+					<li><a href="/logout">Logout</a></li>
+				{% else %}
+					<li><a href="/register">Register</a></li>
+					<li><a href="/login">Login</a></li>
+				{% endif %}

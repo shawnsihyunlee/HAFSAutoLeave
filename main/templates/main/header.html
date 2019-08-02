@@ -1,0 +1,45 @@
+<head>
+	{% load static %}
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/materialize.css' %}">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+    	document.addEventListener('DOMContentLoaded', function() {
+    		var elems = document.querySelectorAll('.sidenav');
+    		var instances = M.Sidenav.init(elems, options);
+    	});
+    </script>
+
+</head>
+
+
+
+
+<body>
+
+	<nav>
+		<div class="nav-wrapper">
+			<a href="/" class="brand-logo">HAFS Auto-Leave 3000</a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				{% include 'main/includes/navbaritems.html' %}
+			</ul>
+		</div>
+	</nav>
+
+	<ul class="sidenav" id="mobile-demo">
+		{% include 'main/includes/navbaritems.html' %}
+	</ul>
+
+	{% include 'main/includes/messaging.html' %}
+
+	<div class = "container">
+		{% block content %}
+
+		{% endblock %}
+	</div>
+
+</body>

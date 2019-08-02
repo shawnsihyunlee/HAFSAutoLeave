@@ -1,0 +1,105 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+<div class="container">
+
+	<div class="section">
+		<h3>
+			going.hafs.hs.kr 로그인 정보
+		</h3>
+	</div>
+	<div class = "divider"></div>
+	<form method="POST">
+
+		{% csrf_token %}
+
+		{{ form.non_field_errors }}
+		<div class = "row">
+			<div class = "col s6">
+				<div class="fieldWrapper">
+					{{ form.student_id.errors }}
+					<label for="{{ form.student_id.id_for_label }}">학번:</label>
+					{{ form.student_id }}
+				</div>
+			</div>
+
+			<div class = "col s6">
+				<div class="fieldWrapper">
+					{{ form.student_pass.errors }}
+					<label for="{{ form.student_pass.id_for_label }}">비번:</label>
+					{{ form.student_pass }}
+				</div>
+			</div>
+
+		</div>
+
+		<div class = "row">
+
+			<div class = "col s4">
+				<div class="fieldWrapper">
+					{{ form.out_day.errors }}
+					<label for="{{ form.out_day.id_for_label }}">Out Day:</label>
+					{{ form.out_day }}
+				</div>
+			</div>
+
+			<div class = "col s4">
+				<div class="fieldWrapper">
+					{{ form.out_hour.errors }}
+					<label for="{{ form.out_hour.id_for_label }}">Out Hour:</label>
+					{{ form.out_hour }}
+				</div>
+			</div>
+
+			<div class = "col s4">
+				<div class="fieldWrapper">
+					{{ form.out_minute.errors }}
+					<label for="{{ form.out_minute.id_for_label }}">Out Minute:</label>
+					{{ form.out_minute }}
+				</div>
+			</div>
+		</div>
+		
+		<div class = "row">
+
+			<div class = "col s4">
+				<div class="fieldWrapper">
+					{{ form.return_day.errors }}
+					<label for="{{ form.return_day.id_for_label }}">Return Day:</label>
+					{{ form.return_day }}
+				</div>
+			</div>
+
+			<div class = "col s4">
+				<div class="fieldWrapper">
+					{{ form.return_hour.errors }}
+					<label for="{{ form.return_hour.id_for_label }}">Return Hour:</label>
+					{{ form.return_hour }}
+				</div>
+			</div>
+
+			<div class = "col s4">
+				<div class="fieldWrapper">
+					{{ form.return_minute.errors }}
+					<label for="{{ form.return_minute.id_for_label }}">Return Minute:</label>
+					{{ form.return_minute }}
+				</div>
+			</div>
+		</div>
+
+		{% if not is_active %}
+			<button style="background-color:#00b043; color:black" class="btn btn-outline-info" type="submit">Start</button>
+		{% else %}
+			<button style="background-color:#ff9999; color:black" class="btn btn-outline-info" type="submit">Stop</button>
+		{% endif %}
+
+	</form>
+
+	
+	<br><br><br>
+
+</div>
+
+
+{% endblock %}
