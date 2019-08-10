@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import sys
 import os
 import datetime
+import re
 
 path = "C:\\Users\\Shawn\\hafsautoleave" #Project path
 if path not in sys.path:
@@ -46,9 +47,8 @@ def doSignup():
         }
 
         #Debug
-        print(f"Login Data for {info.user.username}: \n")
+        print(f"Login Data for {info.user.username}:")
         print(login_data)
-        print("\n")
 
         with requests.Session() as s:
             
@@ -59,7 +59,7 @@ def doSignup():
                 r = s.post(url, data = login_data)
                 
                 if ("alert" in str(r.content)):
-                    print("Wrong Login Data")
+                    #print("Wrong Login Data")
                     raise Exception("Wrong Login Data")
                 
                 # Logged in
@@ -113,3 +113,4 @@ def doSignup():
                 print(alert)
             except Exception as e:
                 print(e)
+                print()
