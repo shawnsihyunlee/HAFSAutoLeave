@@ -105,12 +105,12 @@ def doSignup():
                 r = s.post("http://going.hafs.hs.kr/lod/out_reg2_student.php", data = leave_time_data)
                 r.encoding = 'euc-kr'
                 #print("Status:" , r.status_code)
-                #print(r.text)
-                soup = BeautifulSoup(r.content, 'html.parser')
-                script = soup.find("script").extract()
-                # find all alert text
-                alert = re.findall(r'(?<=alert\(\").+(?=\")', script.text)
-                print(alert)
+                print(r.text)
+                # soup = BeautifulSoup(r.content, 'html.parser')
+                # script = soup.find("script").extract()
+                # # find all alert text
+                # alert = re.findall(r'(?<=alert\(\").+(?=\")', script.text)
+                # print(alert)
             except Exception as e:
                 print(e)
                 print()
