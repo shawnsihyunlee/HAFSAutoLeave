@@ -66,7 +66,7 @@ for info in GoingInfo.objects.filter(do_auto_signup = True):
         r.encoding = 'euc-kr'
         
         # 외출 정보
-        soup = BeautifulSoup(r.content, 'html5lib')
+        soup = BeautifulSoup(r.content, 'html.parser')
         student_seq = soup.find('input', attrs = {'name' : 'student_seq'})["value"]  # Find student sequence number
         
         out_date = datedict[info.out_day.lower()]
