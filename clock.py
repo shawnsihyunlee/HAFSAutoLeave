@@ -10,10 +10,11 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=1)
 def scheduled_job():
-	q.enqueue(test)
+	irregularleavescript.doSignup()
+	#q.enqueue(test)
     #q.enqueue(irregularleavescript.doSignup)
 
-def test():
-	print("This job is run by the worker every minute.")
+# def test():
+# 	print("This job is run by the worker every minute.")
 
 sched.start()
