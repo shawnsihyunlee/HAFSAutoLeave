@@ -76,6 +76,11 @@ def doSignup():
             return_hour = str(info.return_hour)
             return_minute = str(info.return_minute)
             
+            if(out_minute == "0"):
+                out_minute = "00"
+            if(return_minute == "0"):
+                return_minute = "00"
+            
             leave_time_data = {
                 "student_seq" : student_seq,
                 "search_YN" : 'Y',
