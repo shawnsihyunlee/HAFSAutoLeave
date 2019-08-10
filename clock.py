@@ -8,7 +8,7 @@ q = Queue(connection=conn)
 sched = BlockingScheduler()
 
 
-@sched.scheduled_job('interval', minutes='1')
+@sched.scheduled_job('interval', minutes=1)
 def scheduled_job():
 	print("This job is run every minute.")
     #q.enqueue(irregularleavescript.doSignup)
