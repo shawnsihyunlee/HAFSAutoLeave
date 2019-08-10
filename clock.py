@@ -10,7 +10,8 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=1)
 def scheduled_job():
-	irregularleavescript.doSignup()
+	print("Test 1 minute interval")
+	#irregularleavescript.doSignup()
 	#q.enqueue(test)
     #q.enqueue(irregularleavescript.doSignup)
 
