@@ -89,6 +89,8 @@ for info in GoingInfo.objects.filter(do_auto_signup = True):
             "bigo" : '',
             "count" : ''
         }
+
+        #print(leave_time_data) #debugging
         
         r = s.post("http://going.hafs.hs.kr/lod/out_reg2_student.php", data = leave_time_data)
         r.encoding = 'euc-kr'
