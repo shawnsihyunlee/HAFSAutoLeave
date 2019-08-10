@@ -45,6 +45,11 @@ def doSignup():
             'student_pw' : info.student_pass,
         }
 
+        #Debug
+        print(f"Login Data for {info.user.username}: \n")
+        print(login_data)
+        print("\n")
+
         with requests.Session() as s:
             
             # 로그인 URL
@@ -75,7 +80,7 @@ def doSignup():
             return_date = datedict[info.return_day.lower()]
             return_hour = str(info.return_hour)
             return_minute = str(info.return_minute)
-            
+
             if(out_minute == "0"):
                 out_minute = "00"
             if(return_minute == "0"):
@@ -95,9 +100,9 @@ def doSignup():
                 "count" : ''
             }
 
-            #print(leave_time_data) #debugging
+            print(leave_time_data) #debugging
             
             r = s.post("http://going.hafs.hs.kr/lod/out_reg2_student.php", data = leave_time_data)
             r.encoding = 'euc-kr'
-            print("Status:" , r.status_code)
+            #print("Status:" , r.status_code)
             print(r.text)
