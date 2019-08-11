@@ -8,7 +8,7 @@ q = Queue(connection=conn)
 sched = BlockingScheduler()
 
 
-@sched.scheduled_job('cron', day_of_week='mon', hour=18, minute=9, timezone="Asia/Seoul")
+@sched.scheduled_job('cron', day_of_week='sun', hour=18, minute=13, timezone="Asia/Seoul")
 def scheduled_job():
 	#print("Test: Monday")
 	autoleavescript.doSignup()
