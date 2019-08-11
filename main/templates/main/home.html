@@ -15,20 +15,49 @@
 
 	<div class = "row">
 		<div class = "center-align">
-			<a class="waves-effect waves-teal btn-flat modal-trigger" href="#modal1">Help</a>
+			<a class="waves-effect waves-teal btn-flat modal-trigger" href="#modal1">--> 도움말<--</a>
 		</div>
 	</div>
 	
 	<div id="modal1" class="modal">
 		<div class="modal-content">
-			<h4>Help</h4>
-			<p>This webapp automatically does 외출 신청 for you every Monday. Just enter your login information for going.hafs.hs.kr, and select your 외출 날짜 and 복귀 날짜.</p>
-			<p>Some things to remember:</p>
-			<ul>
-					<li>Make sure your 복귀 일자 is later than your 외촐 일자.</li>
-					<li>Make sure the time for each day is valid. (ex. 금요일에는 19시 이후에만 외출 가능, 일요일에는 23시 이전에 복귀 필요)</li>
-					<li>THIS APP WILL KEEP RUNNING IF YOU LEAVE IT ON. REMEMBER TO TURN IT OFF AFTER YOU GRADUATE, ETC.</li>
-				</ul>
+			<h4>도움말</h4>
+			<p>
+				이 앱은 정기외출신청을 매주 까먹어서 급식비를 날리는 당신을 위해, going.hafs.hs.kr 로그인 정보를 입력하기만 하면 매주 자동으로 외출 신청이 되는 앱입니다.
+			</p>
+			<h6>
+				사용 방법
+			</h6>
+			<p>
+				1. 학번, 비밀번호 칸에 <strong>going.hafs.hs.kr 로그인 정보</strong>를 입력합니다. (이 사이트의 로그인 정보와는 완전 별개로, 이 사이트의 로그인 정보는 개발자를 포함한 그 누구에게도 알려지지 않습니다.)
+			</p>
+			<p>
+				2. 외출일자, 복귀일자를 선택합니다. <strong>이때 외출 신청 가능 기간이 아닌 시간대 (예: 금요일 19시 이전, 일요일 23시 이후)를 선택하면 외출 신청이 되지 않습니다.</strong>
+			</p>
+			<p>
+				3. Start버튼을 눌러줍니다. 이제부터 매주 월요일 밤 11시에 자동으로 외출 신청이 될 겁니다. 
+			</p>
+			<p>
+				4. 자동 외출 신청을 끄고싶거나 외출 시간대를 수정하고 싶다면, Stop버튼을 눌러줍니다..
+			</p>
+			<h6>주의 사항:</h6>
+			<p>
+				- 이 사이트의 로그인 정보 (비밀 번호 등)은 암호화되어 개발자를 포함한 그 누구에게도 알려지지 않습니다. <strong>그러나, going.hafs.hs.kr의 로그인 정보는 사이트 특성상 암호화가 되지 않고 저장이 됩니다. 이 점이 불편하신 분들은 사용을 삼가해주시기 바랍니다.</strong>
+			</p>
+			<p>
+				- 외출일자나 시간 설정을 잘못해서 외출 신청이 되지 않아 생긴 불이익은 사용자 책임입니다.
+			</p>
+			<p>
+				- Start 버튼을 켜놓으면, 무조건 매주 월요일에 주말 외출 신청이 됩니다. 이로 인한 불이익은 사용자 책임입니다. 
+			</p>
+			<p>
+				- 이 사이트로 접속하는 로그인 비밀번호를 까먹으면, 개발자에게 연락을 주세요. 아직 "비밀번호를 잊으셨습니까?" 기능을 추가하지 않았습니다... ㅠ
+			</p>
+			<p>
+				- <strong>Heroku 특성상, 서버 재시작으로 인해 아주아주아주아주아주 가끔씩 외출 신청이 자동으로 되지 않을 수도 있습니다! 따라서 꼭 외출 신청을 해야 하는 날이라면 반드시 직접 해주시길 바랍니다!</strong>
+			</p>
+
+			<h5>감사합니다. </h5>
 
 		</div>
 		<div class="modal-footer">
