@@ -4,15 +4,14 @@
 <br>
 <div class = "container">
 	<div class = "card-panel white">
-		<h5 class = "align-center">Register</h5>
+		<h5 class = "align-center">회원가입</h5>
 		<form method="POST">
 			{% csrf_token %}
 			{{form.as_p}}
-			<button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Sign Up</button>
+			<button class="btn btn-outline-info" type="submit">회원가입</button>
 		</form>
 
-
-		If you already have an account <a href="/login" target="blank"><strong>login</strong></a> instead.
+		이미 계정이 있으시다면 <a href="/login" target="blank"><strong>로그인</strong></a> 하세요.
 	</div>
 </div>
 

@@ -5,13 +5,13 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-class Tutorial(models.Model):
-	tutorial_title = models.CharField(max_length = 200)
-	tutorial_content = models.TextField()
-	tutorial_published = models.DateTimeField("date published")
+# class Tutorial(models.Model):
+# 	tutorial_title = models.CharField(max_length = 200)
+# 	tutorial_content = models.TextField()
+# 	tutorial_published = models.DateTimeField("date published")
 
-	def __str__(self):
-		return self.tutorial_title
+# 	def __str__(self):
+# 		return self.tutorial_title
 
 class GoingInfo(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True,)

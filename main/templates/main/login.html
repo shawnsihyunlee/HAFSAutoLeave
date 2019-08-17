@@ -4,13 +4,13 @@
 <br>
     <div class="container">
     	<div class = "card-panel white">
-    	<h5 class = "align-center">Login</h5>
+    	<h5 class = "align-center">로그인</h5>
         <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-            <button class="btn btn-outline-info" type="submit">Login</button>
+            <button class="btn btn-outline-info" type="submit">로그인</button>
         </form>
-        Don't have an account? <a href="/register" target="blank"><strong>Make an account</strong></a> here!
+        계정이 없으세요? <a href="/register" target="blank"><strong>여기서</strong></a> 회원가입 하세요!
     </div>
     </div>
 

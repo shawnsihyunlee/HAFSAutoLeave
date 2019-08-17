@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Tutorial
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -85,7 +84,7 @@ def register(request):
 
         else:
             for msg in form.error_messages:
-                messages.error(request, f"{msg}: {form.error_messages[msg]}")
+                messages.error(request, f"비밀번호가 맞지 않거나 ")
 
             return render(request = request,
                           template_name = "main/register.html",

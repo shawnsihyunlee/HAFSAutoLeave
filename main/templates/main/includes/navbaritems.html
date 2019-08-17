@@ -1,8 +1,8 @@
-<li><a href="/">Auto-Leave Settings</a></li>
+<li><a href="/">자동외출 설정</a></li>
 				{% if user.is_authenticated %}
-					<li><a> Welcome, {{user.username}} </a> </li>
-					<li><a href="/logout">Logout</a></li>
+					<li><a> 환영합니다, {{user.username}} </a> </li>
+					<li><a href="/logout">로그아웃</a></li>
 				{% else %}
-					<li><a href="/register">Register</a></li>
-					<li><a href="/login">Login</a></li>
+					<li><a href="/register">회원가입</a></li>
+					<li><a href="/login">로그인</a></li>
 				{% endif %}
