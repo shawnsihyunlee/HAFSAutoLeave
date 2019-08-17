@@ -84,7 +84,7 @@ def register(request):
 
         else:
             for msg in form.error_messages:
-                messages.error(request, f"비밀번호가 맞지 않거나 ")
+                messages.error(request, f"비밀번호가 일치하지 않거나 너무 짧습니다.")
 
             return render(request = request,
                           template_name = "main/register.html",
