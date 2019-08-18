@@ -94,7 +94,7 @@
 			<div class = "col s4">
 				<div class="fieldWrapper">
 					{{ form.out_day.errors }}
-					<label for="{{ form.out_day.id_for_label }}">Out Day:</label>
+					<label for="{{ form.out_day.id_for_label }}">외출 요일:</label>
 					
 					{{ form.out_day }}
 				</div>
@@ -103,7 +103,7 @@
 			<div class = "col s4">
 				<div class="fieldWrapper">
 					{{ form.out_hour.errors }}
-					<label for="{{ form.out_hour.id_for_label }}">Out Hour:</label>
+					<label for="{{ form.out_hour.id_for_label }}">외출 시:</label>
 					{{ form.out_hour }}
 				</div>
 			</div>
@@ -111,7 +111,7 @@
 			<div class = "col s4">
 				<div class="fieldWrapper">
 					{{ form.out_minute.errors }}
-					<label for="{{ form.out_minute.id_for_label }}">Out Minute:</label>
+					<label for="{{ form.out_minute.id_for_label }}">외출 분:</label>
 					{{ form.out_minute }}
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 			<div class = "col s4">
 				<div class="fieldWrapper">
 					{{ form.return_day.errors }}
-					<label for="{{ form.return_day.id_for_label }}">Return Day:</label>
+					<label for="{{ form.return_day.id_for_label }}">귀교 요일:</label>
 					{{ form.return_day }}
 				</div>
 			</div>
@@ -130,7 +130,7 @@
 			<div class = "col s4">
 				<div class="fieldWrapper">
 					{{ form.return_hour.errors }}
-					<label for="{{ form.return_hour.id_for_label }}">Return Hour:</label>
+					<label for="{{ form.return_hour.id_for_label }}">귀교 시:</label>
 					{{ form.return_hour }}
 				</div>
 			</div>
@@ -138,7 +138,7 @@
 			<div class = "col s4">
 				<div class="fieldWrapper">
 					{{ form.return_minute.errors }}
-					<label for="{{ form.return_minute.id_for_label }}">Return Minute:</label>
+					<label for="{{ form.return_minute.id_for_label }}">귀교 분:</label>
 					{{ form.return_minute }}
 				</div>
 			</div>
@@ -148,7 +148,10 @@
 			{% if not is_active %}
 				<button style="background-color:#00b043; color:black" class="waves-effect waves-light btn-large center-align" type="submit"><i class="material-icons left">play_arrow</i>Start</button>
 			{% else %}
-				<p>
+			<p>
+				매주 월요일 23시에 자동으로 정기 외출 신청이 되고 있습니다.
+			</p>
+			<p>
 				수정을 위해서는 자동등록을 멈추고 수정해주시기 바랍니다.
 			</p>
 				<button style="background-color:#ff9999; color:black" class="waves-effect waves-light btn-large center-align" type="submit"><i class="material-icons left">stop</i>Stop</button>
