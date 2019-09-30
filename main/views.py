@@ -16,7 +16,10 @@ def homepage(request):
 
 
 	info = request.user.goinginfo
+
+	
 	is_active = info.do_auto_signup
+	
 
 	init_data = {'student_id' : info.student_id, 'student_pass' : info.student_pass, 
 				'out_day' : info.out_day, 'out_hour' : info.out_hour, 'out_minute' : info.out_minute,
@@ -30,13 +33,16 @@ def homepage(request):
 				info.do_auto_signup = not info.do_auto_signup
 				saved_info = form.save()
 				# saved_info.refresh_from_db()
-				# is_active = saved_info.do_auto_signup
-				messages.success(request, "Activated auto-signup!")
+				# is_active = True if saved_info.leave_number > 0 else False
+
+				messages.success(request, "자동외출을 실행했습니다!")
+			else:
+				messages.error(request, "자동 외출 횟수는 0 이상이어야 합니다.")
 
 		else:
 			info.do_auto_signup = not info.do_auto_signup
 			info.save()
-			messages.info(request, "Deactivated auto-signup!")
+			messages.info(request, "자동외출을 해제했습니다.")
 				
 		return redirect("main:homepage")
 		# return render(request = request,
@@ -55,6 +61,7 @@ def homepage(request):
 		form.fields['return_day'].widget.attrs['disabled'] = True
 		form.fields['return_hour'].widget.attrs['disabled'] = True
 		form.fields['return_minute'].widget.attrs['disabled'] = True
+		form.fields['leave_number'].widget.attrs['disabled'] = True
 
 	else:
 		form.fields['student_id'].widget.attrs['disabled'] = False
@@ -65,6 +72,7 @@ def homepage(request):
 		form.fields['return_day'].widget.attrs['disabled'] = False
 		form.fields['return_hour'].widget.attrs['disabled'] = False
 		form.fields['return_minute'].widget.attrs['disabled'] = False
+		form.fields['leave_number'].widget.attrs['disabled'] = False
 
 	return render(request = request,
 				  template_name = "main/home.html",

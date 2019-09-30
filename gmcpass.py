@@ -17,7 +17,7 @@ django.setup()
 
 #Django Setup Completed
 
-from main.models import GoingInfo
+#from main.models import GoingInfo
 
 # Calculate dates for this week
 today = datetime.date.today()
@@ -26,6 +26,7 @@ saturday = friday + datetime.timedelta(days=1)
 sunday = friday + datetime.timedelta(days=2)
 
 #Convert to strings
+today = today.strftime('%Y-%m-%d')
 friday = friday.strftime('%Y-%m-%d')
 saturday = saturday.strftime('%Y-%m-%d')
 sunday = sunday.strftime('%Y-%m-%d')
@@ -37,10 +38,6 @@ def doSignup():
 
         print(f"Initiating process for {info.user.username}")
 
-        info.leave_number -= 1
-        if info.leave_number <= 0:
-            info.do_auto_signup = False
-        info.save()
 
         login_data = {
             'login_gubun' : 'student',
@@ -71,14 +68,14 @@ def doSignup():
                 
                 
                 # 정기 외출 신청 get request
-                # print("Getting student_seq...")                                       #DEBUG
+                print("Getting student_seq...") #Debug
                 r = s.get("http://going.hafs.hs.kr/lod/out_reg_student_h.php")
                 r.encoding = 'euc-kr'
                 
                 # 외출 정보
                 soup = BeautifulSoup(r.content, 'html.parser')
                 student_seq = soup.find('input', attrs = {'name' : 'student_seq'})["value"]  # Find student sequence number
-                # print("Got student_seq : ", student_seq)                              #DEBUG
+                print("Got student_seq : ", student_seq) #Debug
 
                 out_date = datedict[info.out_day.lower()]
                 out_hour = str(info.out_hour)
@@ -87,80 +84,45 @@ def doSignup():
                 return_hour = str(info.return_hour)
                 return_minute = str(info.return_minute)
 
-                if(out_minute == "0"):
-                    out_minute = "00"
-                if(return_minute == "0"):
-                    return_minute = "00"
-
-                initial_data = {
-	                'student_seq': student_seq,
-	                'search_YN': 'Y',
-	                'base_seq': '',
-	                'except': 'Y',
-	                'out_date': out_date,
-	                'out_hour': out_hour,
-	                'out_minute': out_minute,
-	                'return_date': return_date,
-	                'return_hour': return_hour,
-	                'return_minute': return_minute,
-	                'count': '3',
-                }
-
-                # Get 식사 제외 times cuz I don't wanna do it via my own algorithm
-                #print("Getting 식사제외 times...")                                  #DEBUG
-                r = s.post("http://going.hafs.hs.kr/lod/out_reg_student_h.php", data = initial_data)
-                r.encoding = 'euc-kr'
-
-                soup = BeautifulSoup(r.content, 'html.parser')
-                count = int(soup.find('input', attrs = {'name' : 'count'})["value"])
-                chk = []
-                for i in range(count):
-                    chk.append(soup.find('input', attrs = {'name' : f'chk[{i+1}]'})["value"])
-                #print("Got 식사제외 times")                                         #DEBUG
-                #Sanity Check
-                # print("Sanity Check:")
-                # print(chk)
 
                 #Final POST data
-                leave_time_data = {
-                'student_seq': student_seq,
-                'search_YN': 'Y',
-                'base_seq': '',
-                'except': 'Y',
-                'out_date': out_date,
-                'out_hour': out_hour,
-                'out_minute': out_minute,
-                'return_date': return_date,
-                'return_hour': return_hour,
-                'return_minute': return_minute,
-                "no_eat_chk": 'Y',
-                "count": str(count),
+                gmc_data = {
+                'submit_type': 'insert'
+                'student_name': '%C0%CC%BD%C3%C7%F6'
+                'student_grade': '03'
+                'student_group': '02'
+                'student_number': '28'
+                'student_no': '30228'
+                'room_seq': '430'
+                'r_year': '2019'
+                'r_month': '08'
+                'r_day': '21'
+                'teacher_id': 'jychoi2003'
+                'pass_gubun': '5'
+                'time_code': '3'
+                'reason': '%C7%D0%B1%B3+%BF%CD%C0%CC%C6%C4%C0%CC%B0%A1+%BA%D2%BE%C8%C1%A4%C7%D5%B4%CF%B4%D9.'
                 }
-
-                for i in range(count):
-                    leave_time_data[f'chk[{i+1}]'] = chk[i]
 
 
             	# <input type='hidden' checked name='chk[1]' value='2019-08-16|4'> <input type='hidden' checked name='chk[2]' value='2019-08-17|1'><input type='hidden' checked name='chk[3]' value='2019-08-17|2'> <input type='hidden' checked  name='chk[4]' value='2019-08-17|3'><input type='hidden' checked name='chk[5]' value='2019-08-17|4'> <input type='hidden' checked name='chk[6]' value='2019-08-18|1'> <input type='hidden' checked name='chk[7]' value='2019-08-18|2'> <input type='hidden' checked name='chk[8]' value='2019-08-18|3'> <input type='hidden' checked name='chk[9]' value='2019-08-18|4'>
 
             	# <input type="hidden" name="count" value="9">
 
-                #print(leave_time_data)                                     #DEBUG
+                #print(leave_time_data) #debugging
                 
-                #print("Doing final signup...")                              #DEBUG
-                r = s.post("http://going.hafs.hs.kr/lod/aa.php", data = leave_time_data)
+                print("Doing final signup...")
+                r = s.post("http://going.hafs.hs.kr/gmc/s_pass_one_ok.php", data = gmc_data)
                 r.encoding = 'euc-kr'
                 #print("Status:" , r.status_code)
-                #print(r.text)
-                soup = BeautifulSoup(r.content, 'html.parser')
-                script = soup.find("script").extract()
+                print(r.text)
+                # soup = BeautifulSoup(r.content, 'html.parser')
+                # script = soup.find("script").extract()
                 # # find all alert text
-                alert = re.findall(r'(?<=alert\(\').+(?=\')', script.text)
-                print(alert)
-                
+                # alert = re.findall(r'(?<=alert\(\").+(?=\")', script.text)
+                # print(alert)
             except Exception as e:
                 print("ERROR:")
                 print(e)
                 print()
 
-doSignup()
+#doSignup()

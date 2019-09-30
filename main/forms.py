@@ -31,7 +31,6 @@ class GoingInfoForm(forms.ModelForm):
     minute_choices = [(x, x) for x in range(0, 70, 10)]
     hour_choices = [(x, x) for x in range(0, 24)]
 
-
     out_day= forms.CharField(label='Out day', widget=forms.Select(choices=day_choices, attrs = {"class" : "browser-default"}))
     return_day= forms.CharField(widget=forms.Select(choices=day_choices, attrs = {"class" : "browser-default"}))
     out_hour= forms.IntegerField(widget=forms.Select(choices=hour_choices, attrs = {"class" : "browser-default"}))
@@ -42,7 +41,16 @@ class GoingInfoForm(forms.ModelForm):
         model = GoingInfo
         fields = ['student_id', 'student_pass', 
                   'out_day', 'out_hour', 'out_minute',
-                  'return_day', 'return_hour', 'return_minute']
+                  'return_day', 'return_hour', 'return_minute', 'leave_number']
+
+    def clean_leave_number(self):
+        data = self.cleaned_data['leave_number']
+        if data <= 0:
+            raise forms.ValidationError("Enter a valid leave number!")
+
+        # Always return a value to use as the new cleaned data, even if
+        # this method didn't change it.
+        return data
 
 
 

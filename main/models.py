@@ -24,6 +24,7 @@ class GoingInfo(models.Model):
 	return_day = models.CharField(max_length = 10, default = "Sunday")
 	return_hour = models.IntegerField(default = 23)
 	return_minute = models.IntegerField(default = 00)
+	leave_number = models.IntegerField(default = 0)
 
 	def __str__(self):
 		return self.user.username + " information"
