@@ -45,7 +45,7 @@ class GoingInfoForm(forms.ModelForm):
 
     def clean_leave_number(self):
         data = self.cleaned_data['leave_number']
-        if data <= 0:
+        if data <= 0 and data != -69:
             raise forms.ValidationError("Enter a valid leave number!")
 
         # Always return a value to use as the new cleaned data, even if

@@ -36,8 +36,8 @@ def doSignup():
     for info in GoingInfo.objects.filter(do_auto_signup = True):
 
         print(f"Initiating process for {info.user.username}")
-
-        info.leave_number -= 1
+        if info.leave_number != -69:
+            info.leave_number -= 1
         if info.leave_number <= 0:
             info.do_auto_signup = False
         info.save()
@@ -86,6 +86,12 @@ def doSignup():
                 return_date = datedict[info.return_day.lower()]
                 return_hour = str(info.return_hour)
                 return_minute = str(info.return_minute)
+
+                if(len(out_hour) == 1):
+                    out_hour = "0" + out_hour
+                if(len(return_hour) == 1):
+                    return_hour = "0" + return_hour
+
 
                 if(out_minute == "0"):
                     out_minute = "00"
