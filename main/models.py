@@ -32,6 +32,9 @@ class GoingInfo(models.Model):
 class Configuration(models.Model):
 	enable_auto_signup = models.BooleanField(default = True)
 
+	def __str__(self):
+		return "Configuration"
+
 
 @receiver(post_save, sender=User)
 def create_goinginfo(sender, instance, created, **kwargs):
