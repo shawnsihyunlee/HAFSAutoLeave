@@ -14,7 +14,6 @@ def homepage(request):
 		messages.info(request, "Please login first.")
 		return redirect("main:login")
 
-
 	info = request.user.goinginfo
 
 	
