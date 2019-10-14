@@ -1,6 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from rq import Queue
-from worker import conn
+# from rq import Queue
+# from worker import conn
 import autoleavescript
 
 # q = Queue(connection=conn)
