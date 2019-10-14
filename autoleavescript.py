@@ -34,7 +34,7 @@ sunday = sunday.strftime('%Y-%m-%d')
 datedict = {'friday' : friday, 'saturday' : saturday, 'sunday' : sunday}
 
 def doSignup():
-    if(Configuration.objects.get().enable_auto_signup = True):
+    if Configuration.objects.get().enable_auto_signup = True:
         for info in GoingInfo.objects.filter(do_auto_signup = True):
 
             print(f"Initiating process for {info.user.username}")
