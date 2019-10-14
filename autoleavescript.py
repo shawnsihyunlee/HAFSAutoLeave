@@ -174,4 +174,4 @@ def doSignup():
     else:
         print("Auto Leave is disabled.")
 
-doSignup()
+#doSignup()
